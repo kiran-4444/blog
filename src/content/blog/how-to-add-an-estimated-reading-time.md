@@ -68,7 +68,52 @@ export default defineConfig({
 
 Step (4) Add `readingTime` to blog schema (`src/content/config.ts`)
 
-```ts
+```rust
+// Let's 🦀
+use schemars::JsonSchema;
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Deserialize, Serialize, JsonSchema)]
+pub struct Blog {
+    // other fields
+    pub reading_time: Option<String>, // 👈🏻 add readingTime field
+}
+
+#[derive(Debug, Deserialize, Serialize, JsonSchema)]
+pub struct Content {
+    pub blog: Blog,
+}
+
+#[derive(Debug, Deserialize, Serialize, JsonSchema)]
+pub struct Site {
+    pub content: Content,
+}
+
+#[derive(Debug, Deserialize, Serialize, JsonSchema)]
+pub struct Config {
+    pub site: Site,
+}
+
+pub const CONFIG: Config = Config {
+    site: Site {
+        content: Content {
+            blog: Blog {
+                // other fields
+                reading_time: None, // 👈🏻 add readingTime field
+            },
+        },
+    },
+};
+
+pub fn get_config() -> &'static Config {
+    &CONFIG
+}
+
+println!("{}", serde_json::to_string_pretty(&CONFIG).unwrap()); // 👈🏻 print config🦀
+
+```
+
+```js
 import { SITE } from "@config";
 import { defineCollection, z } from "astro:content";
 
