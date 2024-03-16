@@ -3,7 +3,7 @@ title: Garbage Collection in Python
 author: Chandra Kiran G
 slug: garbage-collection-in-python
 pubDatetime: 2024-01-07T04:06:31Z
-draft: true
+draft: false
 tags:
   - garbage-collection
 description: Garbage collection is an essential step that ensures the efficient use of memory in a program. In this article, we'll look at the basics of garbage collection, its importance, and the various algorithms used to implement it.
@@ -19,7 +19,7 @@ You keep running your servers all the time. You want those six 9's availability.
 
 One way to do this is to manually release the memory used by the code. In programming languages ​​like C/C++, this is the only way to release unused memory. Remember those C functions `malloc()`, `calloc()` and `free()`? That's what I'm talking about. The memory allocated by `malloc()` or any other function must be freed using the `free()` function. It's not too hard to follow this, but it can get cumbersome very quickly as the code becomes complex. We need to call `free()` in the right places to avoid [dangling pointers](https://en.wikipedia.org/wiki/Dangling_pointer), [memory leaks](https://en.wikipedia.org/wiki/Memory_leak) or both (Refer to the figure below).
 
-![[memory leak and dangling pointer.png]]
+![Memory Leak](../../../public/assets/garbage-collection/memory_leak_and_dangling_pointer.png)
 
 The other way, and the most widely adopted way is to use a garbage collector. Many modern programming languages use garbage collectors for automatic memory management. Let's now see what a garbage collector is and the various algorithms to implement it.
 
