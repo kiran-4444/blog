@@ -6,6 +6,10 @@ import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import { SITE } from "./src/config";
 
+import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
+import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
+import astroExpressiveCode from "astro-expressive-code";
+
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
@@ -15,6 +19,10 @@ export default defineConfig({
     }),
     react(),
     sitemap(),
+    astroExpressiveCode({
+      plugins: [pluginLineNumbers(), pluginCollapsibleSections()],
+      themes: ["monokai"],
+    }),
   ],
   markdown: {
     remarkPlugins: [
