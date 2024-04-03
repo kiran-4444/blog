@@ -3,7 +3,7 @@ title: Garbage Collection in Python
 author: Chandra Kiran G
 slug: garbage-collection-in-python
 pubDatetime: 2024-01-07T04:06:31Z
-draft: false
+draft: true
 tags:
   - garbage-collection
 description: Garbage collection is an essential step that ensures the efficient use of memory in a program. In this article, we'll look at the basics of garbage collection, its importance, and the various algorithms used to implement it.
