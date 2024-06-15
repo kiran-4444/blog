@@ -57,7 +57,7 @@ $ tree .git
 
 Let's try to explore each file and folder in the order of their priority.
 
-## objects Folder
+## objects/ Folder
 
 This is the most important folder. This is where Git stores the history of each file in the form of blobs, trees and commits. Git uses a technique called content-based hashing to store blobs (individual files) onto the disk. Meaning, two files with same content will have same entry in objects folder.
 
@@ -65,11 +65,11 @@ But how does it differentiate between those two files then? This is where tree o
 
 And finally commit objects store a collection of trees and blobs. Each commit object store the exact state of a Git repository.
 
-### objects/pack Folder
+### objects/pack/ Folder
 
 If you look at the objects folder above closely (ignore info and pack folders for now) there's a folder and not a file. We'd expect a single object file since we only added a.txt right? This is one of the place where Git smartly stores the objects in folders with folder names being the first two characters of the object's hash. This is to reduce the number of entries in objects folder and make it easier of operating system to iterate. With this technique, the maximum folders that can exist (excluding info and pack folders) under objects folder will be 256 (16 \* 16 combinations using first two hexadecimal characters) [^1] . These are called loose objects. When these loose objects grow more than a certain threshold (6700 by default) Git performs a pack action to store all similar files into a pack file under pack/ directory. This immensely reduces space further.
 
-### objects/info Folder
+### objects/info/ Folder
 
 This folder is supposed to store any additional information regarding the files stored. But I've always seen this folder empty.
 
@@ -77,7 +77,7 @@ This folder is supposed to store any additional information regarding the files 
 
 This is where all our staging area information is stored. This information is used by various commands like `git commit`, `git status`, `git diff` etc.
 
-## refs Folder
+## refs/ Folder
 
 Stores the information about various branches and tags. Each file inside the folders heads/, tags/ stores the tip of the commit in a file with same name a branch/tag. For example if you have a branch named main with latest commit being 1ce5...c661a, the file refs/heads/main would store this commit. So when ever you switch branches, this is where Git looks to get the latest commit of that specific branch.
 
@@ -92,7 +92,7 @@ ref: refs/heads/main
 
 This can also point to a specific commit directly and is called detached HEAD.
 
-## logs Folder
+## logs/ Folder
 
 This folder stores all the changes made to a specific branch. For example, the following is a simple logs/HEAD file on one of my local repository:
 
@@ -107,7 +107,7 @@ ecceb7ef60f7f3b922eacb4331afc86e42bb8ddd ecceb7ef60f7f3b922eacb4331afc86e42bb8dd
 
 ```
 
-## hooks Folder
+## hooks/ Folder
 
 This folder stores some scripts that during run during various Git commands. For example the file commit-msg.sample  contains a script to show the default commit message template.
 
