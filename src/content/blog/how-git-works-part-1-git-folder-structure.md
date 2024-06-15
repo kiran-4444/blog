@@ -3,7 +3,7 @@ title: "How Git works: Part 1 - Git Folder Structure"
 date: 2024-06-15
 author: Chandra Kiran G
 slug: how-git-works-part-1-git-folder-structure
-pubDatetime: 2024-01-07T12:18:31+05:30
+pubDatetime: 2024-01-07T12:18:31
 draft: false
 tags:
   - git
