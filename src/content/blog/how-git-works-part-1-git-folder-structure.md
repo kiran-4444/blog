@@ -12,7 +12,7 @@ tags:
 description: Git is a distributed version control system. We all know what Git is. We all know how to work with Git. But did you ever wonder how Git works? This is an attempt to put all my learning into a blog to make me better understand the concepts and to give you a chance to explore further.
 ---
 
-### Table of Contents
+### Introduction
 
 This is the first of the series of blogs I'm thinking to write on the Git internals. I'll try to explain the Git directory structure in this one.
 
