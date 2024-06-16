@@ -27,32 +27,47 @@ $ git add a.txt
 
 $ tree .git
 .git
-├── branches/
+├── branches
+├── COMMIT_EDITMSG
 ├── config
 ├── description
+├── FETCH_HEAD
 ├── HEAD
-├── hooks/
+├── hooks
 │   ├── applypatch-msg.sample
-│   ├── commit-msg.sample
+│   └──commit-msg.sample
 ├── index
-├── info/
+├── info
 │   └── exclude
-├── objects/
-│   ├── ea/
-│   │   └── a5fa8755fc20f08d0b3da347a5d1868404e462
-│   ├── info/
-│   └── pack/
-└── refs/
-|    ├── heads/
-|    └── tags/
-└── logs/
-│    ├── HEAD
-│    └── refs/
-│       ├── heads/
-│       │   └── main
-│       └── remotes
-│           └── origin
-│               └── main
+├── logs
+│   ├── HEAD
+│   └── refs
+│       ├── heads
+│       │   └── main
+│       └── remotes
+│           └── origin
+│               ├── HEAD
+│               └── main
+├── objects
+│   ├── 2d
+│   │   └── cbb273b464a2301e958341a26487df0b34b504
+│   ├── info
+│   └── pack
+│       ├── pack-146d926a6f751188c9b9c942cf85c5ef6ac35c17.idx
+│       └── pack-146d926a6f751188c9b9c942cf85c5ef6ac35c17.pack
+├── ORIG_HEAD
+├── packed-refs
+├── REBASE_HEAD
+└── refs
+    ├── heads
+    │   └── main
+    ├── remotes
+    │   └── origin
+    │       ├── HEAD
+    │       └── main
+    └── tags
+        └── v1.0.0
+
 ```
 
 Let's try to explore each file and folder in the order of their priority.
