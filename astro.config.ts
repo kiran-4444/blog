@@ -20,8 +20,8 @@ export default defineConfig({
     react(),
     sitemap(),
     astroExpressiveCode({
-      plugins: [pluginLineNumbers(), pluginCollapsibleSections()],
-      themes: ["monokai"],
+      plugins: [pluginCollapsibleSections()],
+      themes: ["github-dark"],
     }),
   ],
   markdown: {

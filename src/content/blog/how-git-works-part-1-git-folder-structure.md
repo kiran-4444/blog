@@ -3,7 +3,7 @@ title: "How Git works: Part 1 - Git Folder Structure"
 date: 2024-06-15
 author: Chandra Kiran G
 slug: how-git-works-part-1-git-folder-structure
-pubDatetime: 2024-01-07T12:18:31
+pubDatetime: 2024-06-07T12:18:31
 draft: false
 tags:
   - git
@@ -14,7 +14,7 @@ description: Git is a distributed version control system. We all know what Git i
 
 ### Introduction
 
-This is the first of the series of blogs I'm thinking to write on the Git internals. I'll try to explain the Git directory structure in this one.
+This is the first of the series of blogs I'm thinking to write on the Git internals. I'll try to explain the Git directory structure in this one. Also, I'll keep updating this blog and other blogs as and when I learn more about Git.
 
 Git tracks and stores the changes in a folder called .git. Let's see what that contains.
 
