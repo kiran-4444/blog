@@ -107,3 +107,35 @@ This algorithm is simple and easy to understand the Paxos (which will be discuss
 #### Paxos Algorithm
 
 (I couldn’t understand this and will definitely update this section)
+
+## Propagating Replication Log
+
+Now we need to answer next question: how to propagate changes from master to followers? Few of the most used methods are:
+
+1. Statement-based replication (SBR): This involves sending the raw sql queries over the wire to each of the replicas. This is the simplest method among all other techniques. The disadvantage is that any non deterministic data like time and random values might change when these changes were executed by replicas.
+2. Row-based replication (RBR): This involves sending the actual physical row-level changes to the replicas. This replication captures precisely what happened to the rows after a transaction. This is the default replication method in MySQL.
+
+## Problems with Replication Lag
+
+Replication lag is the delay between the time when data is written to the master node and the time when it is replicated to the follower nodes. This typically lies around few milliseconds to seconds. But it can go from minutes to hours in some systems. And this delay can result in very interesting problems. This mainly due to the fact that writes are only processed by the master node and reads can be processed my any of the nodes.
+
+### Read Your Own Writes
+
+Let’s say you posted a post on Instagram and you received an acknowledgement saying your post has been successfully published. Then you immediately refreshed the page are you see a 404 page. Where did your post go? After a while, you see your post again. Why does this happen? This is because your post was posted through master node and when you refreshed the page, the read request has been handled by a follower node that has not yet received your write request from master.
+
+![Read Your Own Writes](../../../public/assets/single-leader-based-replication/read-your-writes.png)
+
+There are few solutions for this:
+
+- When reading something that user may have modified, read it from master node or else read it from follower node. This requires some way of knowing whether something may have been modified. For example, a profile page can be modified by the user and hence when getting profile page, always read it from master.
+- The above technique isn’t efficient if user can modify most of the things in the application. This blows up the master node with read requests, negating the benefit of replication. One other way is to store the last update time and let’s say for one minute after the update serve all read requests from the master node only. This one minute can be altered based on the monitored replication lag.
+
+### Monotonic Reads
+
+![Monotonic Reads](../../../public/assets/single-leader-based-replication/monotonic-reads.png)
+
+This anomaly can make user travel back in time. Let’s say user I updates their profile photo. User II tries to read this data from one of the replicas which has already received the updates from master. User II sees the updated profile photo. Then User II again refreshes the page and tries to read the profile photo but sees the old photo. This is because the second read request has been served from the replica which has not yet received the changes from the master. Monotonic reads is a guarantee that this does not happen. A simple solution is to achieve monotonic reads is to read from the same replica. This way user will always see the things in right order (even though there might be some lag).
+
+### Consistent Prefix Reads
+
+This is a type of guarantee that ensures that if a sequence of writes is performed in a specific order, then the reads that sees these writes are also one in the same order.
